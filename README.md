@@ -1,6 +1,6 @@
 # Mettrr Tech Test
 
-> Simple tech test to guage your ability. If at any stage you have any questions, please contact Sean at sm@mettrr.com
+> Simple tech test to gauge your ability. If at any stage you have any questions, please contact Sean at sm@mettrr.com
 
 # Install dependencies
 
