@@ -11,11 +11,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
@@ -31,6 +29,14 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ],
+      },
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
       },
       {
         test: /\.sass$/,
@@ -57,7 +63,7 @@ module.exports = {
               'vue-style-loader',
               'css-loader',
               'sass-loader?indentedSyntax'
-            ]
+            ],
           }
           // other vue-loader options go here
         }
@@ -73,7 +79,12 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
-      }
+      },
+      {
+        test: /\.js?$/,
+        exclude: /(node_modules)/,
+        loader: ['babel-loader']
+        },
     ]
   },
   resolve: {
