@@ -14,7 +14,7 @@
 
 > Welcome...
 
-> This test should only take you roughly one hour and should be completed using es6 and Vue.js
+> This test should only take you roughly one hour and should be completed using Vue/React
 
 > First of all I want you to create a branch from master with the naming convention - "{your name}/mettrr-tech-test"
 
