@@ -1,8 +1,20 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './App.vue';
+import store from './store/store';
+import routes from './routes';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes,
+    mode: 'history',
+});
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+    el: '#app',
+    store,
+    router,
+    render: h => h(App),
+});
