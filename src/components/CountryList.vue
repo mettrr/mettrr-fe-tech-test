@@ -18,6 +18,7 @@ export default {
             noFlyList: ['TD', 'KP', 'VE', 'IR', 'LY', 'SO', 'SY', 'YE'],
             options: [],
             selected: null,
+            error: null,
         };
     },
     methods: {
@@ -36,12 +37,16 @@ export default {
                     this.options.push({ id: country.code, label: country.name });
                 }
             });
+            this.$store.dispatch('setCountryList', this.options);
         },
     },
     async mounted() {
-        this.contryList = (await CountryService.index()).data;
-        console.log(this.contryList);
-        this.setSelectData(this.contryList);
+        try {
+            this.contryList = (await CountryService.index()).data;
+            this.setSelectData(this.contryList);
+        } catch (error) {
+            this.error = 'error';
+        }
     },
 };
 
