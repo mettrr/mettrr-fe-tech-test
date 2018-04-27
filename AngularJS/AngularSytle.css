@@ -1,0 +1,62 @@
+select {
+  color: #005aff;
+  background-color: #c4d9ff;
+  margin: 10px 5px 10px 30px
+}
+
+option {
+  background-color: #c4d9ff;
+}
+
+select:focus>option:checked {
+  color: #ff005c;
+  background-color: #ffb2ce;
+}
+
+td {
+  color: #005aff;
+  background-color: #c4d9ff;
+}
+
+input {
+  color: #005aff;
+  background-color: #c4d9ff;
+  box-shadow: 0 0 10px 100px #c4d9ff inset;
+}
+
+h5 {
+  color: #005aff;
+  margin-left: 20px
+}
+
+h4 {
+  color: #005aff;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+table {
+  margin-left: 30px;
+}
+
+td {
+  max-width: 20px;
+}
+
+div {
+  margin-top: 20px;
+}
+
+span {
+  margin-left: 10px;
+}
+
+.btn{
+  margin-left:50%;
+  }
+
+
+.warning{
+  color: #ff4000;
+}
+

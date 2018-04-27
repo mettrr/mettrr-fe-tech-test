@@ -1,0 +1,24 @@
+<body ng-app="AlejandroApp">
+  <div ng-controller="CountryList">
+
+    <span>Exclude, on fly, a Country by Code in the dropdown:</span>
+    <input type="text" placeholder="e.g. 'AF'" ng-model="codeExcluded">
+
+    <h4>Data from Json</h4>
+    <span class="warning">'{{item.name}}' was removed from the oginial country list. </span>
+
+    <h5>Country List dropdrown:</h5>
+    <select>1
+      <option ng-if="x.code!= codeExcluded" ng-repeat="x in records track by $index">{{x.name}}</option>
+    </select>
+
+    <h5>Full Records Table:</h5>
+    <table ng-init="loadData()" class="table">
+      <tr ng-repeat="x in records | limitTo:totalDisplayed">
+        <td>{{x.name}}</td>
+        <td>{{x.code}}</td>
+      </tr>
+    </table>
+    <button class="btn" ng-click="loadMore()">Load more</button>
+  </div>
+</body>
