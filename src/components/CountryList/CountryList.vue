@@ -4,13 +4,11 @@
         <router-link to="/">Home</router-link>
         <div class="dropdown">
             <div class="dropdown-selected-item" 
-                v-on:click="toggleDropdownList"
-            >
+                v-on:click="toggleDropdownList">
                 <p v-if="selectedListItem">{{ selectedListItem.name }}</p>
             </div>
             <ul class="dropdown-list"
-                v-bind:class="{active: dropdownListIsActive}"
-            >
+                v-bind:class="{active: dropdownListIsActive}">
                 <li v-for="(country, index) in countryList" 
                     :key="`fruit=${index}`"
                     v-on:click="setSelectedListItem(country)">
@@ -18,11 +16,12 @@
                 </li>
             </ul>
         </div>
+        <h3 v-if="selectedListItem">You selected {{selectedListItem.name}}</h3>
     </div>
 </template>
 
 <script>
-import getCountryListExceptNoFlyList from '../data/getCountryListExceptNoFlyList';
+import getCountryListExceptNoFlyList from '../../data/getCountryListExceptNoFlyList';
 
 export default {
     data() {
@@ -35,14 +34,7 @@ export default {
         };
     },
     mounted() {
-        const self = this;
-        getCountryListExceptNoFlyList().then((list) => {
-            self.countryList = list;
-            [self.selectedListItem = 0] = list;
-        }).catch((err) => {
-            self.hasError = true;
-            self.errorMessage = err.message;
-        });
+        this.getCountryItems();
     },
     methods: {
         toggleDropdownList() {
@@ -52,6 +44,21 @@ export default {
             this.selectedListItem = country;
             this.dropdownListIsActive = false;
         },
+        getCountryItems() {
+            const self = this;
+
+            // Reset feedback indicators
+            self.hasError = false;
+            self.errorMessage = '';
+
+            getCountryListExceptNoFlyList().then((list) => {
+                self.countryList = list;
+                [self.selectedListItem = 0] = list;
+            }).catch((err) => {
+                self.hasError = true;
+                self.errorMessage = err.message;
+            });
+        },
     },
 };
 </script>
@@ -59,7 +66,7 @@ export default {
 <style lang="scss">
     .dropdown {
         position: relative;
-        margin-top: 5px;
+        margin-top: 15px;
 
         .dropdown-selected-item {
             cursor: pointer;
@@ -81,6 +88,7 @@ export default {
             top: 130%;
             box-shadow: 0 2px 8px rgba(0,0,0,.15);
             border-radius: 4px;
+            background-color: #fff;
 
             &.active {
                 display: block;
@@ -95,6 +103,11 @@ export default {
 
             &::-webkit-scrollbar-thumb {
                 background-color: #000000;
+            }
+
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                background-color: #F5F5F5;
             }
 
             li {
