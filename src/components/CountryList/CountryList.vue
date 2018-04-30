@@ -3,6 +3,7 @@
         <h2>Country List</h2>
         <router-link to="/">Home</router-link>
         <div v-if="!hasError" class="panel-container">
+
             <div class="dropdown">
                 <div class="dropdown-selected-item" 
                     v-on:click="toggleDropdownList">
@@ -19,11 +20,14 @@
                 </ul>
             </div>
             <h3 v-if="selectedListItem">You selected {{selectedListItem.name}}</h3>
+
         </div>
         <div v-else class="panel-container">
+
             Uh oh an error occured.
             {{errorMessage}}
             <button v-on:click="getCountryItems()">Retry?</button>
+
         </div>
     </div>
 </template>
@@ -79,6 +83,7 @@ export default {
     .panel-container {
         margin: 15px 0;
     }
+
     .dropdown {
         position: relative;
         margin-top: 15px;
@@ -135,11 +140,13 @@ export default {
             }
         }   
     }
+
     .lds-dual-ring {
         display: inline-block;
         width: 20px;
         height: 20px;
     }
+
     .lds-dual-ring:after {
     content: " ";
         display: block;
@@ -151,6 +158,7 @@ export default {
         border-color: rgba(117, 81, 255, 0.7) transparent rgba(117, 81, 255, 0.7) transparent;
         animation: lds-dual-ring 1.2s linear infinite;
     }
+    
     @keyframes lds-dual-ring {
         0% {
             transform: rotate(0deg);
