@@ -2,6 +2,7 @@
     <div id="app">
         <h1>{{ msg }}</h1>
         <img src="./assets/mettrr-logo.png">
+        <router-link to="/country-list">Country List</router-link>
     </div>
 </template>
 
