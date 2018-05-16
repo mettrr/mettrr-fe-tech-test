@@ -1,7 +1,16 @@
 {
+    "plugins": [
+        "transform-runtime",
+        [
+            "component",
+            {
+                "libraryName": "element-ui",
+                "styleLibraryName": "theme-chalk"
+            }
+        ]
+    ],
     "presets": [
-      ["env", { "modules": false }],
-      "stage-3"
+        ["env", { "modules": false }],
+        "stage-3"
     ]
   }
-  
