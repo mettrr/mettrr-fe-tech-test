@@ -2,7 +2,13 @@
     <section>
         <h2>Country list</h2>
 
+        <p v-if="error">
+            <strong>Error loading countries:</strong>
+            {{ error }}
+        </p>
+
         <el-autocomplete
+            v-else
             value-key="name"
             v-model="country"
             placeholder="Search for a country..."
