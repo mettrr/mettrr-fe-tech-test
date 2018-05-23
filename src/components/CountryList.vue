@@ -1,5 +1,8 @@
 <template>
-    <v-select :options="countries"></v-select>
+    <div class="countryList">
+        <v-select :options="countries"></v-select>
+        <p class="countryList__error" v-if="countriesError">Oops, something went wrong... please try again later!</p>
+    </div>
 </template>
 
 <script>
@@ -8,6 +11,7 @@ export default {
     data() {
         return {
             countries: [],
+            countriesError: false,
         };
     },
     created() {
@@ -22,11 +26,19 @@ export default {
                     }
                 });
             })
-            .catch(err => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                this.countriesError = true;
+            });
     },
 };
 </script>
 
 <style lang="scss" scoped>
-
+    .countryList {
+        &__error {
+            font-weight: bold;
+            color: #c63a45;
+        }
+    }
 </style>
