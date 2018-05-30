@@ -2,7 +2,7 @@
     <div id="app">
         <h1>{{msg}}</h1>
         <img id='mettrr__logo' src="./assets/mettrr-logo.png">
-        <CountryList></CountryList>
+         <router-view/>
     </div>
 </template>
 
@@ -11,9 +11,6 @@ import CountryList from './components/country-list/country-list.vue';
 
 export default {
     name: 'MettrrTest',
-    components: {
-        CountryList,
-    },
     data() {
         return {
             msg: 'Mettrr Tech Test',
@@ -31,12 +28,12 @@ body {
     text-align: center;
     #mettrr__logo {
       width: 300px;
-      animation: animate 5s ease-in-out infinite;
+      animation: animate-rotate 5s ease-in-out infinite;
     }
   } 
 }
-@keyframes animate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+@keyframes animate-rotate {
+    0% { transform: rotate(0deg) rotateX(0deg);}
+    100% { transform: rotate(360deg) rotateX(360deg);}
+}
 </style>

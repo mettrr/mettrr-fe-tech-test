@@ -5,8 +5,11 @@
             <img :class="[collapse ? '--collapse' : '']"
                 class='caret__Image' src='../../assets/arrow-64.png' />
         </div>
+        <p class='error__Msg' 
+            v-if="fetchError">Oops! Error in Fetching country data...</p>
             <ul class='countryList'
-            :class="[collapse ? '--collapse-list' : '']">
+                v-if="!fetchError"
+                :class="[collapse ? '--collapse-list' : '']">
                 <li :class="[collapse ? '--animate' : '']"
                 v-for="country in countries" 
                 :key="country.code">{{country.name}}</li>
@@ -26,6 +29,7 @@ export default {
             countries: [],
             title: 'Click Me',
             collapse: false,
+            fetchError: false,
         };
     },
     created() {
@@ -33,7 +37,9 @@ export default {
             .then(countries => {
                 this.countries = removeNoFly(countries);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.fetchError = true;
+            });
     },
     methods: {
         dropDown() {
@@ -102,5 +108,10 @@ ul li {
     &.--animate {
         transform: translateY(0);
     }
+}
+.error__Msg {
+    color: lighten(red, 30%);
+    font-weight: 400;
+    font-size: 1.5rem;
 }
 </style>
