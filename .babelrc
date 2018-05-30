@@ -1,7 +1,35 @@
 {
-    "presets": [
-      ["env", { "modules": false }],
-      "stage-3"
-    ]
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    "stage-3"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "env",
+        "stage-3"
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./src"
+            ],
+            "alias": {
+              "@": "./src"
+            }
+          }
+        ]
+      ]
+    }
   }
-  
+}
