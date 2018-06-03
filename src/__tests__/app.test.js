@@ -1,7 +1,7 @@
 import * as vTests from 'vue-test-utils';
 import moxios from 'moxios';
 import { mount } from 'avoriaz'
-import { countryRoute } from '../config';
+import { apiEndPoint } from '../config/config';
 import { getCountry } from '../components/country-list/country-list.api';
 import CountryList from '../components/country-list/country-list.vue';
 import { createRenderer } from 'vue-server-renderer';
@@ -35,7 +35,7 @@ describe('CountryList ', () => {
     })
 
     it('valid api route', async () => {
-        moxios.stubRequest(countryRoute, {
+        moxios.stubRequest(apiEndPoint, {
             status: 200,
             response: [
                 {

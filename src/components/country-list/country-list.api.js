@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { countryRoute } from '../../config';
+import { apiEndPoint } from '../../config/config';
 
 export const getCountry = () => {
     const promise = new Promise((resolve, reject) => {
         axios
-            .get(`${countryRoute}`)
+            .get(`${apiEndPoint}`)
             .then(countries => resolve(countries.data))
             .catch(error => reject(error));
     });

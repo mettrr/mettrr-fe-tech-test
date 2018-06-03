@@ -58,9 +58,9 @@ $border: 1px solid lighten(grey, 40%);
     justify-content: space-between;
     align-items: center;
     padding: 0 0.5rem;
-    border: $border;
     color: gray;
     font-weight: 400;
+    border: $border;
 }
 .caret__Image {
     height: 20px;
@@ -79,10 +79,9 @@ ul {
     padding: 0;
     background: lighten(blue, 50%);
     overflow-y: scroll;
-    border: $border;
     height: 0px;
     transition: 0.5s all ease-out;
-
+    border-bottom: 1px solid grey;
     &.--collapse-list {
         height: 400px;
         display: block;
@@ -92,7 +91,7 @@ ul li {
     text-align: left;
     margin: 0.1rem 0;
     padding: 0.7rem;
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: grey;
     font-weight: 200;
     letter-spacing: 0.5px;
@@ -100,6 +99,7 @@ ul li {
     transition: 0.5s all ease-in;
     border-left: 3px solid grey;
     border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
     &:hover {
         background: linear-gradient(45deg,lighten(grey, 10%), lighten(grey, 60%));  
         color: white; 
