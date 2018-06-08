@@ -1,5 +1,19 @@
+<!--
+Technically, I didn't use a select, I used a text input field, that behaves like a select.
+
+My solution to the poor UX of having a giant search was to add filtering as you type.
+I could have then introduced lazy-loading of search results, to only load when scrolled down further.
+
+In the spirit of this challenge, I didn't want to just find a vue library capable of doing it
+
+in a real environment I would have used a pre-built component.
+
+I was really tempted to install Vuetify because I think it's form elements are well designed.
+
+-->
+
 <template>
-    <auto-complete v-if="countryData.length > 0" :suggestions="allowedCountryList" v-model="selection" />
+    <auto-complete :suggestions="allowedCountryList" v-model="selection" />
 </template>
 
 <script>
@@ -12,13 +26,14 @@
         components: { AutoComplete },
         data() {
             return {
+                endpoint: '/bins/16i597',
                 selection: '',
                 countryData: [],
             };
         },
         created() {
             HTTP
-                .get('/bins/16i597')
+                .get(this.endpoint)
                 .then((response) => {
                     this.countryData = response.data;
                 })

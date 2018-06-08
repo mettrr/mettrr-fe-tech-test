@@ -1,6 +1,6 @@
 <template>
     <div style="position:relative" v-bind:class="{'open':openSuggestion}">
-        <label for="search">{{ searchLabel }}</label>
+        <h2>{{ searchLabel }}</h2>
         <input id="search" class="autocomplete" type="text" :value="value" @input="updateValue($event.target.value)" @keydown.enter='enter' @keydown.down='down' @keydown.up='up'>
         <div v-if="displayDropDown" class="autocomplete-items" style="width:100%">
             <div v-for="(suggestion, index) in matches" v-bind:class="{'active': isActive(index)}" @click="suggestionClick(index)">
@@ -32,9 +32,7 @@ export default {
         };
     },
     computed: {
-    // Filtering the suggestion based on the input
         matches() {
-            // return this.suggestions.filter((obj) => obj.name.indexOf(this.value) >= 0);
             return this.suggestions.filter((suggestion, index) => {
                 const regex = new RegExp(this.value, 'gi');
                 return suggestion.name.match(regex);
@@ -88,6 +86,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mettrrPrimary: #7551ff;
+
 * {
   box-sizing: border-box;
 }
@@ -119,12 +119,11 @@ input[type='text'] {
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
-  background-color: #7551ff;
+  background-color: $mettrrPrimary;
   border-bottom: 1px solid #d4d4d4;
 }
 .autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #e9e9e9;
+  background-color: darken($mettrrPrimary, 10%);
 }
 a {
   color: white;
