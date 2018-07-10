@@ -5,29 +5,37 @@
             type="text"
             placeholder="Search for a country"
             v-model="searchQuery"
+            @focus="open = true"
         >
         <div
+            class="dropdown-selected"
+            
+        >
+            <div class="dropdown-title">Selected: </div>
+            <div
+                class="dropdown-result selected"
+                v-if="!!selected.code"
+                :title="`[${selected.code}] ${selected.name}`"
+                :key="selected.code"  
+                @click="toggleSelectCountry(selected)"  
+            >
+                <span class="dropdown-result_code">[{{ selected.code }}] </span>
+                <span class="dropdown-result_name">{{ selected.name }}</span>
+            </div> 
+            <div
+                class="dropdown-result_none"
+                v-else
+            >No country selected</div>              
+            <div
+                class="dropdown-arrow"
+                :class="{ active: open }"
+                @click="open = !open"
+            ></div>
+        </div>
+        <div
+            v-if="open && queriedCountries.length"
             class="dropdown-results"
         >
-            <div
-                class="dropdown-selected"
-            >
-                <div class="dropdown-title">Selected: </div>
-                <div
-                    class="dropdown-result selected"
-                    v-if="!!selected.code"
-                    :title="`[${selected.code}] ${selected.name}`"
-                    :key="selected.code"  
-                    @click="toggleSelectCountry(selected)"  
-                >
-                    <span class="dropdown-result_code">[{{ selected.code }}] </span>
-                    <span class="dropdown-result_name">{{ selected.name }}</span>
-                </div> 
-                <div
-                    class="dropdown-result_none"
-                    v-else
-                >No country selected</div>              
-            </div>
             <div
                 class="dropdown-result"
                 v-for="country in queriedCountries"
@@ -39,6 +47,12 @@
                 <span class="dropdown-result_name">{{ country.name }}</span>
                 <span class="dropdown-result_code">{{ country.code }}</span>
             </div>
+        </div>
+        <div
+            v-else-if="open"
+            class="dropdown-results dropdown-results_none"
+        >
+            No results found. Please try again
         </div>
     </div>
 </template>
@@ -55,6 +69,7 @@ export default {
     data() {
         return {
             searchQuery: '',
+            open: false,
             selected: {
                 code: '',
                 name: '',
@@ -66,10 +81,12 @@ export default {
             return this.selected.code === code;
         },
         toggleSelectCountry(country) {
+            this.searchQuery = '';
             this.selected = this.selected.name !== country.name ? country : {
                 code: '',
                 name: '',
             };
+            if (this.selected) this.open = false;
         },
     },
     computed: {
@@ -110,15 +127,16 @@ $mettrr--color: #7551ff;
         padding: 10px;
         max-height: 300px;
         overflow: auto;
+        border: 2px solid $mettrr--color;
+        border-top: none;
     }
 
     &-selected {
+        box-sizing: border-box;
         display: flex;
         align-items: center;
-        flex: 0 0 100%;
         min-height: 45px;
-        padding-bottom: 5px;
-        margin-bottom: 5px;
+        padding: 10px;
         border-bottom: 1px solid #afafaf;
 
         .dropdown-result {
@@ -129,6 +147,22 @@ $mettrr--color: #7551ff;
             &_code {
                 margin-right: 1em;
             }
+        }
+    }
+
+    &-arrow {
+        cursor: pointer;
+        margin-left: auto;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 8px 0 8px;
+        border-color:  $mettrr--color transparent transparent transparent;            
+        transition: all .3s;
+
+        &.active {
+            border-width: 0 8px 12px 8px;
+            border-color: transparent transparent $mettrr--color transparent;
         }
     }
 
