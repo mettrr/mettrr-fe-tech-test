@@ -1,9 +1,11 @@
 <template>
     <transition name="fade">
         <div
-            class="loader"
-            v-if="loading"
-        ></div>
+            class="loader-background"
+            v-show="loading"
+        >
+            <div class="loader"></div>
+        </div>
     </transition>
 </template>
 
@@ -29,20 +31,17 @@ export default {
     opacity: 0;
 }
 
-.loader,
-.loader:before,
-.loader:after {
-    border-radius: 50%;
-}
-
 .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     color: #7551ff;
-    margin: 0 auto;
     position: relative;
     width: 4em;
     height: 4em;
+    border-radius: 50%;
     box-shadow: inset 0 0 0 .5em;
-    transform: translateZ(0);
+    transform: translate(-50%, -50%) translateZ(0);
 
     &:before,
     &:after {
@@ -64,6 +63,15 @@ export default {
         left: 2.1em;
         transform-origin: 0px 2.1em;
         animation: load 2s infinite ease;
+    }
+
+    &-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;    
+        background: #fff;
     }
 }
 

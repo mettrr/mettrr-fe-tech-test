@@ -7,7 +7,7 @@
                 :loading="loading"
             />
             <DropDown
-                countries="filteredCountries"
+                :countries="filteredCountries"
             />
         </div>
     </div>
@@ -29,7 +29,6 @@ export default {
         return {
             countryList: [],
             loading: false,
-            error: false,
         };
     },
     created() {
@@ -43,7 +42,7 @@ export default {
                     this.countryList = res.data;
                 })
                 .catch((err) => {
-                    this.error = true;
+                    console.log(err, err.stack);
                 })
                 .then(() => {
                     this.loading = false;
@@ -53,15 +52,15 @@ export default {
     computed: {
         filteredCountries() {
             return this.countryList
-                .filter(({ name }) => !noFlyList.includes(name))
-                .map(country => country.name);
+                .filter(({ name }) => !noFlyList.includes(name));
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-.country-list {
+.country-list--container {
     position: relative;
+    min-height: 300px;
 }
 </style>
