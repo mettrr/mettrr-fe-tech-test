@@ -2,6 +2,7 @@
     <div id="app">
         <h1>{{ msg }}</h1>
         <img src="./assets/mettrr-logo.png">
+        <router-view></router-view>
     </div>
 </template>
 
@@ -10,7 +11,7 @@
         name: 'MettrrTest',
         data() {
             return {
-                msg: 'Mettrr Tech Test',
+                msg: 'Mettrr Tech Test 👌',
             };
         },
     };
