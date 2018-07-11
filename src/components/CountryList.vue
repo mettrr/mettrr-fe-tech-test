@@ -61,6 +61,5 @@ export default {
 <style lang="scss" scoped>
 .country-list--container {
     position: relative;
-    min-height: 300px;
 }
 </style>
