@@ -24,6 +24,11 @@
             ></div>
         </div>
         <div
+            class="dropdown-menu_overlay"
+            v-show="open"
+            @click="open = false"
+        ></div>
+        <div
             v-show="open"
             class="dropdown-menu"
             ref="dropdownMenu"
@@ -120,8 +125,22 @@ $mettrr--color: #7551ff;
     }
 
     &-menu {
+        position: absolute;
+        z-index: 3;
+        top: 100%;
+        left: 0;
+        width: 100%;
         border: 2px solid $mettrr--color;
         border-top: none;
+
+        &_overlay {
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         &_input {
             box-sizing: border-box;
