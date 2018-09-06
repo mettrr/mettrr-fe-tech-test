@@ -8,12 +8,12 @@
 <script>
     export default {
         name: 'MettrrTest',
-        data () {
+        data() {
             return {
-                msg: 'Mettrr Tech Test'
-            }
-        } 
-    }
+                msg: 'Mettrr Tech Test',
+            };
+        },
+    };
 </script>
 
 <style lang="scss">
