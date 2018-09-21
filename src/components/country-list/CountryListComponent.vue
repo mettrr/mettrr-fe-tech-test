@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             countries: [],
-            noFlyList: ['VE', 'SY', 'IR', 'SO', 'KR', 'YE'], // Those are the country banned from the US
+            noFlyList: ['VE', 'SY', 'IR', 'SO', 'KR', 'YE'], // Those are the countries banned from the US
             selectedCountry: '',
             errors: [],
         };
