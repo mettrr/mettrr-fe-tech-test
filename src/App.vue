@@ -2,18 +2,20 @@
     <div id="app">
         <h1>{{ msg }}</h1>
         <img src="./assets/mettrr-logo.png">
+
+        <router-view/>
     </div>
 </template>
 
 <script>
     export default {
         name: 'MettrrTest',
-        data () {
+        data() {
             return {
-                msg: 'Mettrr Tech Test'
-            }
-        } 
-    }
+                msg: 'Mettrr Tech Test',
+            };
+        },
+    };
 </script>
 
 <style lang="scss">
